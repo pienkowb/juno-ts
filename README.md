@@ -1,12 +1,25 @@
 # juno-ts
 
-This modules contains the TypeScript/AssemblyScript bindings for Juno messages.
+TypeScript/AssemblyScript library for decoding Juno messages.
+
+## Usage
+
+```typescript
+import { cosmwasm, google } from "@graphprotocol/juno-ts";
+
+function logSender(any: google.protobuf.Any) {
+  if (any.type_url == '/cosmwasm.wasm.v1.MsgExecuteContract') {
+    const message = cosmwasm.wasm.v1.decodeMsgExecuteContract(any.value);
+    console.log(message.sender);
+  }
+}
+```
 
 ## Development
 
-Install protoc: `https://github.com/protocolbuffers/protobuf/releases`
+Install [Protocol Buffer Compiler](https://github.com/protocolbuffers/protobuf/releases) (`protoc`) and [Lerna](https://lerna.js.org/).
 
-### Get proto-file
+### Fetch dependencies
 
 ```bash
 git submodule update --init --force
@@ -15,16 +28,17 @@ git submodule update --init --force
 ### Build and test
 
 ```bash
-yarn
+yarn install
 yarn build
 yarn test
 ```
 
 ## Update dependencies
 
-Update branch variable in .gitmodules to point to the new tag.
+In order to update a dependency, change the value of the `branch` option in the corresponding section of the `.gitmodules` file.
 
-> **Submodule should always point to tag**
+> **Note**<br>
+> A submodule should always point to a tag.
 
 ```bash
 git -C <submodule_dir> checkout <new_tag>
