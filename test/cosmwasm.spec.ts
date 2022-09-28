@@ -1,8 +1,6 @@
 /// <reference types="@as-pect/assembly/types/as-pect" />
 
-import { Protobuf } from 'as-proto';
-
-import { MsgExecuteContract, decodeMsgExecuteContract } from '../src/cosmwasm/wasm/v1/tx';
+import { MsgExecuteContract, encodeMsgExecuteContract, decodeMsgExecuteContract } from '../src/cosmwasm/wasm/v1/tx';
 import { Coin } from '../src/cosmos/base/v1beta1/coin';
 
 describe('CosmWasm', () => {
@@ -14,7 +12,7 @@ describe('CosmWasm', () => {
       [new Coin('juno', '200')]
     );
 
-    const encodedMsg = Protobuf.encode<MsgExecuteContract>(msg, MsgExecuteContract.encode);
+    const encodedMsg = encodeMsgExecuteContract(msg);
     const decodedMsg = decodeMsgExecuteContract(encodedMsg);
 
     expect(decodedMsg.sender).toBe(msg.sender);
