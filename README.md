@@ -8,7 +8,7 @@ TypeScript/AssemblyScript library for decoding Juno messages.
 import { cosmwasm, google } from "@graphprotocol/juno-ts";
 
 function logSender(any: google.protobuf.Any) {
-  if (any.type_url == '/cosmwasm.wasm.v1.MsgExecuteContract') {
+  if (any.typeUrl == '/cosmwasm.wasm.v1.MsgExecuteContract') {
     const message = cosmwasm.wasm.v1.decodeMsgExecuteContract(any.value);
     console.log(message.sender);
   }
