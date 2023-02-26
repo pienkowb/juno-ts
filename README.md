@@ -1,15 +1,16 @@
 # juno-ts
 
-TypeScript/AssemblyScript library for decoding Juno messages.
+An AssemblyScript library for decoding Juno messages.
 
 ## Usage
 
 ```typescript
-import { cosmwasm, google } from "@graphprotocol/juno-ts";
+import { Any } from "@graphprotocol/juno-ts/assembly/google/protobuf/Any";
+import { decodeMsgExecuteContract } from "@graphprotocol/juno-ts/assembly/cosmwasm/wasm/v1/MsgExecuteContract";
 
-function logSender(any: google.protobuf.Any) {
-  if (any.typeUrl == '/cosmwasm.wasm.v1.MsgExecuteContract') {
-    const message = cosmwasm.wasm.v1.decodeMsgExecuteContract(any.value);
+function logSender(any: Any): void {
+  if (any.typeUrl == "/cosmwasm.wasm.v1.MsgExecuteContract") {
+    const message = decodeMsgExecuteContract(any.value);
     console.log(message.sender);
   }
 }
