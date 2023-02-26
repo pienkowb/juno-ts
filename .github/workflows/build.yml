@@ -4,7 +4,7 @@ on: push
 
 jobs:
   build:
-    name: Run tests
+    name: Run build
     runs-on: ubuntu-latest
 
     steps:
@@ -14,8 +14,9 @@ jobs:
           node-version: 16
       - uses: abelfodil/protoc-action@v1
         with:
-          protoc-version: '21.6'
+          protoc-version: '21.12'
       - run: git submodule update --init --force
       - run: yarn install --frozen-lockfile
       - run: yarn build
-      - run: yarn test
+      - run: git diff
+      - run: git diff --quiet assembly/**/*.ts
