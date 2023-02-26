@@ -4,5 +4,5 @@
 --proto_path=./ibc-go/proto
 --proto_path=./juno/proto
 --proto_path=./wasmd/proto
---as_out=./src
+--as_out=./assembly
 --as_opt=gen-helper-methods

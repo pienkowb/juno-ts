@@ -4,8 +4,8 @@ import {
   MsgExecuteContract,
   encodeMsgExecuteContract,
   decodeMsgExecuteContract,
-} from "../src/cosmwasm/wasm/v1/tx";
-import { Coin } from "../src/cosmos/base/v1beta1/coin";
+} from "../assembly/cosmwasm/wasm/v1/MsgExecuteContract";
+import { Coin } from "../assembly/cosmos/base/v1beta1/Coin";
 
 describe("CosmWasm", () => {
   test("decodes a contract execution message", () => {
